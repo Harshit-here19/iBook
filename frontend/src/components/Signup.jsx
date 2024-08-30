@@ -32,7 +32,7 @@ const Signup = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:3000/api/auth/createuser",
+        "https://ibook-dmlh.onrender.com/api/auth/createuser",
         {
           method: "POST",
           headers: {

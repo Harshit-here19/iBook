@@ -94,7 +94,7 @@ const NoteItem = (props) => {
   let date = new Date(note.date);
 
   return (
-    <div className="max-w-xs rounded overflow-hidden shadow-lg m-4 bg-solo-leveling-400 w-1/2">
+    <div className="rounded overflow-hidden shadow-lg m-4 bg-solo-leveling-400 w-[90%] md:w-fit">
       {showDeleteModal && (
         <Modal closeModal={closeModal}> {deleteModalContent} </Modal>
       )}
@@ -102,7 +102,7 @@ const NoteItem = (props) => {
       {showEditModal && (
         <Modal closeModal={closeEditModal}> {editModalContent} </Modal>
       )}
-      <div className="px-6 py-4 w-[90%] md:w-fit">
+      <div className="px-6 py-4">
         <div className="flex items-baseline">
           <div className="font-bold text-xl mb-2 text-white">{note.title}</div>
           <i

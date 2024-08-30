@@ -75,21 +75,21 @@ const Navbar = () => {
           <li onClick={() => setMobileMenuOpen(false)}>
             <NavButtons path={pathname} title="About" to="/about" />
           </li>
-          <li onClick={() => setMobileMenuOpen(false)}>
-            {!localStorage.getItem("token") && (
+          {!localStorage.getItem("token") && (
+            <li onClick={() => setMobileMenuOpen(false)}>
               <NavButtons path={pathname} title="Login" to="/login" />
-            )}
-          </li>
-          <li onClick={() => setMobileMenuOpen(false)}>
-            {!localStorage.getItem("token") && (
+            </li>
+          )}
+          {!localStorage.getItem("token") && (
+            <li onClick={() => setMobileMenuOpen(false)}>
               <NavButtons path={pathname} title="Signup" to="/signup" />
-            )}
-          </li>
-          <li onClick={() => setMobileMenuOpen(false)}>
-            {localStorage.getItem("token") && (
+            </li>
+          )}
+          {localStorage.getItem("token") && (
+            <li onClick={() => setMobileMenuOpen(false)}>
               <NavButtons title="Logout" onClick={handleLogout} />
-            )}
-          </li>
+            </li>
+          )}
         </ul>
       )}
     </>

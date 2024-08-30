@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const NavButtons = ({ path, title, to, onClick }) => {
   return (
-    <li>
+    <>
       {to && (
         <div className="flex flex-wrap justify-center gap-6">
           {to !== path && (
@@ -51,7 +51,7 @@ const NavButtons = ({ path, title, to, onClick }) => {
           Cancel
         </button>
       </div> */}
-    </li>
+    </>
   );
 };
 

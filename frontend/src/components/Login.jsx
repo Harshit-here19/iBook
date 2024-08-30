@@ -76,7 +76,7 @@ const Login = () => {
           </div>
         </Modal>
       )}
-      <div className="bg-gray-100 h-screen flex items-center justify-center">
+      <div className="bg-gray-100 md:h-screen h-fit flex items-center justify-center">
         {/* <!-- Login Form --> */}
 
         <div className="relative z-10 bg-white p-8 rounded-md shadow-lg w-[90vw] md:w-1/2">

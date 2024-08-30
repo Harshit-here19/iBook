@@ -5,7 +5,6 @@ import NavButtons from "./Utility/NavButtons";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const context = useContext(toastifyContext);
   const { notify } = context;
@@ -27,17 +26,27 @@ const Navbar = () => {
       <nav className="bg-solo-leveling-300 text-white p-4 flex justify-between items-start">
         <div className="text-3xl font-bold">iBook</div>
         <ul className="hidden md:flex space-x-4">
-          <NavButtons path={pathname} title="Home" to="/" />
-          <NavButtons path={pathname} title="About" to="/about" />
-          {!localStorage.getItem("token") && (
-            <NavButtons path={pathname} title="Login" to="/login" />
-          )}
-          {!localStorage.getItem("token") && (
-            <NavButtons path={pathname} title="Signup" to="/signup" />
-          )}
-          {localStorage.getItem("token") && (
-            <NavButtons title="Logout" onClick={handleLogout} />
-          )}
+          <li>
+            <NavButtons path={pathname} title="Home" to="/" />
+          </li>
+          <li>
+            <NavButtons path={pathname} title="About" to="/about" />
+          </li>
+          <li>
+            {!localStorage.getItem("token") && (
+              <NavButtons path={pathname} title="Login" to="/login" />
+            )}
+          </li>
+          <li>
+            {!localStorage.getItem("token") && (
+              <NavButtons path={pathname} title="Signup" to="/signup" />
+            )}
+          </li>
+          <li>
+            {localStorage.getItem("token") && (
+              <NavButtons title="Logout" onClick={handleLogout} />
+            )}
+          </li>
         </ul>
         <div className="md:hidden">
           <button onClick={toggleMobileMenu}>
@@ -60,15 +69,27 @@ const Navbar = () => {
       </nav>
       {mobileMenuOpen && (
         <ul className="bg-solo-leveling-300 text-white p-4 flex flex-col gap-8 justify-between items-center w-1/3 right-0 absolute rounded-bl-lg animate-appearing">
-          <NavButtons path={pathname} title="Home" to="/" />
-          <NavButtons path={pathname} title="About" to="/about" />
-          {!isLoggedIn && (
-            <NavButtons path={pathname} title="Login" to="/login" />
-          )}
-          {!isLoggedIn && (
-            <NavButtons path={pathname} title="Signup" to="/signup" />
-          )}
-          {isLoggedIn && <NavButtons title="Logout" onClick={handleLogout} />}
+          <li onClick={() => setMobileMenuOpen(false)}>
+            <NavButtons path={pathname} title="Home" to="/" />
+          </li>
+          <li onClick={() => setMobileMenuOpen(false)}>
+            <NavButtons path={pathname} title="About" to="/about" />
+          </li>
+          <li onClick={() => setMobileMenuOpen(false)}>
+            {!localStorage.getItem("token") && (
+              <NavButtons path={pathname} title="Login" to="/login" />
+            )}
+          </li>
+          <li onClick={() => setMobileMenuOpen(false)}>
+            {!localStorage.getItem("token") && (
+              <NavButtons path={pathname} title="Signup" to="/signup" />
+            )}
+          </li>
+          <li onClick={() => setMobileMenuOpen(false)}>
+            {localStorage.getItem("token") && (
+              <NavButtons title="Logout" onClick={handleLogout} />
+            )}
+          </li>
         </ul>
       )}
     </>

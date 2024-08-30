@@ -95,7 +95,7 @@ const Signup = () => {
           </div>
         </Modal>
       )}
-      <div className="bg-gray-100 min-h-screen flex items-center justify-center">
+      <div className="bg-gray-100  md:h-screen h-fit flex items-center justify-center">
         {/* <!-- Signup Form --> */}
         <div className="relative z-10 bg-white p-8 rounded-md shadow-lg">
           <h1 className="text-xl font-bold mb-4">Signup</h1>

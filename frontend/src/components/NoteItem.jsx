@@ -102,7 +102,7 @@ const NoteItem = (props) => {
       {showEditModal && (
         <Modal closeModal={closeEditModal}> {editModalContent} </Modal>
       )}
-      <div className="px-6 py-4">
+      <div className="px-6 py-4 w-[90%] md:w-fit">
         <div className="flex items-baseline">
           <div className="font-bold text-xl mb-2 text-white">{note.title}</div>
           <i

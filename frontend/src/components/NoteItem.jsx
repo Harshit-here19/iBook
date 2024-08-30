@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import noteContext from "../context/notes/noteContext";
 import toastifyContext from "../context/toastify/toastifyContext";
 
-import EditForm from "./Utility/editForm";
+import EditForm from "./Utility/EditForm";
 import Modal from "./Utility/Modal";
 
 const NoteItem = (props) => {

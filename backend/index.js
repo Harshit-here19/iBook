@@ -6,7 +6,7 @@ require("dotenv").config();
 const app = express();
 
 const corsOptions = {
-    origin: 'http://localhost:5173',
+    origin: 'https://ibook-cloud.onrender.com/',
     credentials: true,
     allowedHeaders: ['Content-Type', 'auth-token']
 }

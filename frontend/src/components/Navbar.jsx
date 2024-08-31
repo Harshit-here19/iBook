@@ -5,6 +5,7 @@ import NavButtons from "./Utility/NavButtons";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showUser, setShowUser] = useState(false);
 
   const context = useContext(toastifyContext);
   const { notify } = context;
@@ -32,22 +33,36 @@ const Navbar = () => {
           <li>
             <NavButtons path={pathname} title="About" to="/about" />
           </li>
-          <li>
-            {!localStorage.getItem("token") && (
+          {!localStorage.getItem("token") && (
+            <li>
               <NavButtons path={pathname} title="Login" to="/login" />
-            )}
-          </li>
-          <li>
-            {!localStorage.getItem("token") && (
+            </li>
+          )}
+          {!localStorage.getItem("token") && (
+            <li>
               <NavButtons path={pathname} title="Signup" to="/signup" />
-            )}
-          </li>
-          <li>
-            {localStorage.getItem("token") && (
+            </li>
+          )}
+          {localStorage.getItem("token") && (
+            <li>
+              <i
+                class="fa-solid fa-user"
+                onClick={() => setShowUser(!showUser)}
+              ></i>
+            </li>
+          )}
+          {localStorage.getItem("token") && (
+            <li>
               <NavButtons title="Logout" onClick={handleLogout} />
-            )}
-          </li>
+            </li>
+          )}
         </ul>
+        <div>
+          <ul className="bg-solo-leveling-300 text-white p-4 flex flex-col gap-8 justify-between items-center w-1/3 right-0 absolute rounded-bl-lg animate-appearing z-30">
+            <li>User Name</li>
+            <li>User Email</li>
+          </ul>
+        </div>
         <div className="md:hidden">
           <button onClick={toggleMobileMenu}>
             <svg

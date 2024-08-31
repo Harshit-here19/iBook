@@ -13,7 +13,7 @@ const Notes = () => {
     if (localStorage.getItem("token")) {
       fetchNote();
     } else {
-      navigate("/login");
+      navigate("/signup");
     }
   }, []);
 

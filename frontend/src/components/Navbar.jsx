@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import toastifyContext from "../context/toastify/toastifyContext";
 import NavButtons from "./Utility/NavButtons";
@@ -6,15 +6,47 @@ import NavButtons from "./Utility/NavButtons";
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showUser, setShowUser] = useState(false);
+  const [userDetails, setUserDetails] = useState({
+    userName: "",
+    userEmail: "",
+  });
 
   const context = useContext(toastifyContext);
   const { notify } = context;
 
+  const { pathname } = useLocation();
+  let navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await fetch(
+          "https://ibook-dmlh.onrender.com/api/auth/getuser",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "auth-token": localStorage.getItem("token"),
+            },
+          }
+        );
+
+        const json = await response.json();
+        // console.log(json);
+        setUserDetails({ userName: json.name, userEmail: json.email });
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+
+    if (localStorage.getItem("token")) {
+      fetchUser();
+    }
+  }, [pathname]);
+
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
-  const { pathname } = useLocation();
-  let navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -57,12 +89,6 @@ const Navbar = () => {
             </li>
           )}
         </ul>
-        <div>
-          <ul className="bg-solo-leveling-300 text-white p-4 flex flex-col gap-8 justify-between items-center w-1/3 right-0 absolute rounded-bl-lg animate-appearing z-30">
-            <li>User Name</li>
-            <li>User Email</li>
-          </ul>
-        </div>
         <div className="md:hidden">
           <button onClick={toggleMobileMenu}>
             <svg
@@ -105,6 +131,12 @@ const Navbar = () => {
               <NavButtons title="Logout" onClick={handleLogout} />
             </li>
           )}
+        </ul>
+      )}
+      {showUser && (
+        <ul className="bg-solo-leveling-300 text-white p-4 flex flex-col gap-8 justify-between items-center w-1/3 right-0 absolute rounded-bl-lg animate-appearing z-30">
+          <li>{userDetails.userName}</li>
+          <li>{userDetails.userEmail}</li>
         </ul>
       )}
     </>

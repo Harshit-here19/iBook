@@ -25,7 +25,6 @@ const Navbar = () => {
           {
             method: "POST",
             headers: {
-              "Content-Type": "application/json",
               "auth-token": localStorage.getItem("token"),
             },
           }

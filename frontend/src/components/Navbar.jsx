@@ -54,10 +54,23 @@ const Navbar = () => {
     notify("Logout Successful!!!");
   };
 
+  const userButton = (
+    <li>
+      <div className="flex flex-wrap justify-center gap-6 cursor-pointer">
+        <div className="relative" onClick={() => setShowUser(!showUser)}>
+          <span className="absolute top-0 left-0 mt-1 ml-1 h-full w-full rounded bg-black"></span>
+          <span className="fold-bold relative inline-block h-full w-full rounded border-2 border-black bg-white px-3 py-1 text-base font-bold text-black transition duration-100 hover:bg-bubble-gum hover:text-gray-900">
+            <i class="fa-solid fa-user"></i>
+          </span>
+        </div>
+      </div>
+    </li>
+  );
+
   return (
     <>
       <nav className="bg-solo-leveling-300 text-white p-4 flex justify-between items-start">
-        <div className="text-3xl font-bold">iBook</div>
+        <div className="text-3xl font-extrabold">iBook</div>
         <ul className="hidden md:flex space-x-4">
           <li>
             <NavButtons path={pathname} title="Home" to="/" />
@@ -75,14 +88,7 @@ const Navbar = () => {
               <NavButtons path={pathname} title="Signup" to="/signup" />
             </li>
           )}
-          {localStorage.getItem("token") && (
-            <li>
-              <i
-                class="fa-solid fa-user"
-                onClick={() => setShowUser(!showUser)}
-              ></i>
-            </li>
-          )}
+          {localStorage.getItem("token") && { userButton }}
           {localStorage.getItem("token") && (
             <li>
               <NavButtons title="Logout" onClick={handleLogout} />
@@ -90,6 +96,7 @@ const Navbar = () => {
           )}
         </ul>
         <div className="md:hidden">
+          {localStorage.getItem("token") && { userButton }}
           <button onClick={toggleMobileMenu}>
             <svg
               className="w-6 h-6"
@@ -134,9 +141,9 @@ const Navbar = () => {
         </ul>
       )}
       {showUser && (
-        <ul className="bg-solo-leveling-300 text-white p-4 flex flex-col gap-8 justify-between items-center w-1/3 right-0 absolute rounded-bl-lg animate-appearing z-30">
-          <li>{userDetails.userName}</li>
-          <li>{userDetails.userEmail}</li>
+        <ul className="bg-solo-leveling-300 text-black p-4 flex flex-col gap-8 justify-between items-center w-1/3 right-0 absolute rounded-bl-lg animate-appearing z-30">
+          <li className="text-xl font-bold">{userDetails.userName}</li>
+          <li className="text-lg font-semibold">{userDetails.userEmail}</li>
         </ul>
       )}
     </>

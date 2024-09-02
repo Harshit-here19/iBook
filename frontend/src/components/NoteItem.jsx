@@ -80,6 +80,11 @@ const NoteItem = (props) => {
     </div>
   );
 
+  const boxStyle =
+    note.tag !== "Game of Thrones"
+      ? "rounded overflow-hidden shadow-lg m-4 bg-solo-leveling-400 w-[90%] md:w-[45%]"
+      : "rounded overflow-hidden shadow-lg m-4 w-[90%] gotBG md:w-[45%] font-bold";
+
   const tagStyling = [
     "bg-green-400 hover:bg-green-500",
     "bg-yellow-200 hover:bg-yellow-300",
@@ -94,7 +99,7 @@ const NoteItem = (props) => {
   let date = new Date(note.date);
 
   return (
-    <div className="rounded overflow-hidden shadow-lg m-4 bg-solo-leveling-400 w-[90%] md:w-fit">
+    <div className={boxStyle}>
       {showDeleteModal && (
         <Modal closeModal={closeModal}> {deleteModalContent} </Modal>
       )}
@@ -125,14 +130,14 @@ const NoteItem = (props) => {
 
         <div className="flex justify-center items-center">
           <p
-            className={`py-1 px-2 rounded-lg h-fit text-sm w-fit mt-4 font-semibold ${tagStyling[randomIndex]}`}
+            className={`py-1 px-2 rounded-lg h-fit text-sm w-fit mt-4 font-semibold ${tagStyling[randomIndex]} noBg`}
           >
             {note.tag}
           </p>
           <p
             className={`bg-teal-400 hover:bg-teal-500 py-1 px-2 mx-2 rounded-lg text-sm w-fit mt-4 font-semibold ${
               tagStyling[randomIndex + 1]
-            }`}
+            } noBg`}
           >
             {date.toDateString()}
           </p>

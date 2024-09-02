@@ -24,7 +24,7 @@ const NoteState = (props) => {
       const json = await response.json();
       setNotes(json.notes);
 
-      // console.log(json.notes);
+      console.log(json.notes);
     } catch (error) {
       console.log(error.message);
     }
@@ -40,6 +40,35 @@ const NoteState = (props) => {
         "auth-token": localStorage.getItem("token"),
       },
       body: JSON.stringify({ title, description, tag }),
+    });
+
+    const newNote = await response.json();
+    // console.log(newNote.savedNote);
+
+    //TODO: here we want to add new entry to first for diplay purpose otherwise our backend is giving the data new to old
+    setNotes(notes.concat(newNote.savedNote));
+  };
+
+  //TODO: Add a Note
+  const GOTnote = async () => {
+    const body = await fetch("https://api.gameofthronesquotes.xyz/v1/random");
+    const bodyData = await body.json();
+    const {
+      sentence,
+      character: { name },
+    } = await bodyData;
+
+    const response = await fetch(`${host}/api/notes/addnote`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": localStorage.getItem("token"),
+      },
+      body: JSON.stringify({
+        title: name,
+        description: sentence,
+        tag: "Game of Thrones",
+      }),
     });
 
     const newNote = await response.json();
@@ -103,7 +132,15 @@ const NoteState = (props) => {
 
   return (
     <noteContext.Provider
-      value={{ notes, addNote, deleteNote, editNote, fetchNote, isLoading }}
+      value={{
+        notes,
+        addNote,
+        deleteNote,
+        editNote,
+        fetchNote,
+        isLoading,
+        GOTnote,
+      }}
     >
       {props.children}
     </noteContext.Provider>

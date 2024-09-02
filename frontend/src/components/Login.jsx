@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import toastifyContext from "../context/toastify/toastifyContext";
 
 import Modal from "./Utility/Modal";
+import Loader from "./Utility/Loader";
 
 const Login = () => {
   const alert = useContext(toastifyContext);
@@ -80,7 +81,11 @@ const Login = () => {
         </Modal>
       )}
 
-      {isLoading && <Modal>Loading...</Modal>}
+      {isLoading && (
+        <Modal>
+          <Loader />
+        </Modal>
+      )}
       <div className="bg-gray-100 md:h-screen h-fit flex items-center justify-center">
         {/* <!-- Login Form --> */}
 

@@ -3,12 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 
 import toastifyContext from "../context/toastify/toastifyContext";
 import Modal from "./Utility/Modal";
+import Loader from "./Utility/Loader";
 
 const Signup = () => {
   const alert = useContext(toastifyContext);
   const { notify } = alert;
 
   const [showErrorModal, setShowErrorModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [warningText, setWarningText] = useState(
     "Some Error Occurs Please try again later."
   );
@@ -27,6 +29,7 @@ const Signup = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     const { name, email, password } = credentials;
 
@@ -62,6 +65,7 @@ const Signup = () => {
     } catch (error) {
       console.log(error.message);
     }
+    setIsLoading(false);
   };
 
   const validCond =
@@ -95,6 +99,13 @@ const Signup = () => {
           </div>
         </Modal>
       )}
+
+      {isLoading && (
+        <Modal>
+          <Loader />
+        </Modal>
+      )}
+
       <div className="bg-gray-100  md:h-screen h-fit flex items-center justify-center">
         {/* <!-- Signup Form --> */}
         <div className="relative z-10 bg-white p-8 rounded-md shadow-lg">

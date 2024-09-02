@@ -4,7 +4,7 @@ import toastifyContext from "../context/toastify/toastifyContext";
 
 const AddNote = (props) => {
   const context = useContext(noteContext);
-  const { addNote } = context;
+  const { addNote, GOTnote } = context;
 
   const alert = useContext(toastifyContext);
   const { notify } = alert;
@@ -23,6 +23,12 @@ const AddNote = (props) => {
       description: "",
       tag: "",
     });
+    notify("Note Addedd Successful!!!");
+  };
+
+  const gotSubmitHandler = (e) => {
+    e.preventDefault();
+    GOTnote();
     notify("Note Addedd Successful!!!");
   };
 
@@ -102,7 +108,7 @@ const AddNote = (props) => {
           </div>
         </div>
 
-        <div className="flex justify-center">
+        <div className="flex justify-center gap-6">
           <button
             className={
               note.title.trim().length < 5 || note.description.trim().length < 5
@@ -113,6 +119,13 @@ const AddNote = (props) => {
             onClick={submitHadler}
           >
             Add Note
+          </button>
+
+          <button
+            class="px-6 py-2 min-w-[120px] text-center text-bubble-gum border border-bubble-gum rounded hover:bg-bubble-gum font-bold hover:text-white active:bg-indigo-500 focus:outline-none focus:ring"
+            onClick={gotSubmitHandler}
+          >
+            Game of Throne
           </button>
         </div>
       </form>

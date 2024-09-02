@@ -73,6 +73,7 @@ const Navbar = () => {
       <nav className="bg-solo-leveling-300 text-white p-4 flex justify-between items-start">
         <div className="text-3xl font-extrabold">iBook</div>
         <ul className="hidden md:flex space-x-4">
+          {localStorage.getItem("token") && userButton}
           <li>
             <NavButtons path={pathname} title="Home" to="/" />
           </li>
@@ -89,14 +90,13 @@ const Navbar = () => {
               <NavButtons path={pathname} title="Signup" to="/signup" />
             </li>
           )}
-          {localStorage.getItem("token") && userButton}
           {localStorage.getItem("token") && (
             <li>
               <NavButtons title="Logout" onClick={handleLogout} />
             </li>
           )}
         </ul>
-        <div className="md:hidden">
+        <div className="md:hidden list-none flex gap-4">
           {localStorage.getItem("token") && userButton}
           <button onClick={toggleMobileMenu}>
             <svg
@@ -109,7 +109,7 @@ const Navbar = () => {
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth={2}
+                strokeWidth={3}
                 d="M4 6h16M4 12h16M4 18h16"
               />
             </svg>

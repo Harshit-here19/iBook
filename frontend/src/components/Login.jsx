@@ -10,10 +10,12 @@ const Login = () => {
   const { notify } = alert;
 
   const [showErrorModal, setShowErrorModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   let navigate = useNavigate();
 
   const submitHandler = async (e) => {
+    setIsLoading(true);
     e.preventDefault();
 
     let form = e.target;
@@ -49,6 +51,7 @@ const Login = () => {
     } catch (error) {
       console.log(error.message);
     }
+    setIsLoading(false);
   };
 
   const closeModal = () => {
@@ -76,6 +79,8 @@ const Login = () => {
           </div>
         </Modal>
       )}
+
+      {isLoading && <Modal>Loading...</Modal>}
       <div className="bg-gray-100 md:h-screen h-fit flex items-center justify-center">
         {/* <!-- Login Form --> */}
 

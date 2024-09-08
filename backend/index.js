@@ -6,8 +6,8 @@ require("dotenv").config();
 const app = express();
 
 const corsOptions = {
-    origin: 'https://ibook-cloud.onrender.com',
-    // origin: '*',
+    // origin: 'https://ibook-cloud.onrender.com',
+    origin: '*',
     credentials: true,
     allowedHeaders: ['Content-Type', 'auth-token']
 }
@@ -19,6 +19,7 @@ app.use(cors(corsOptions))
 // Available Routes
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/notes', require('./routes/notes'))
+app.use('/api/schedule', require('./routes/schedule'))
 
 mongoose.connect(process.env.MONGODB_URI).then(() => {
     const port = process.env.PORT || 3000;

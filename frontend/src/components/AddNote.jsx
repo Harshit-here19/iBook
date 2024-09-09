@@ -122,7 +122,7 @@ const AddNote = (props) => {
           </button>
 
           <button
-            class="px-6 py-2 min-w-[120px] text-center text-bubble-gum border border-bubble-gum rounded hover:bg-bubble-gum font-bold hover:text-white active:bg-indigo-500 focus:outline-none focus:ring"
+            className="px-6 py-2 min-w-[120px] text-center text-bubble-gum border border-bubble-gum rounded hover:bg-bubble-gum font-bold hover:text-white active:bg-indigo-500 focus:outline-none focus:ring"
             onClick={gotSubmitHandler}
           >
             Game of Throne

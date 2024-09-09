@@ -1,3 +1,29 @@
 i {
   cursor: pointer;
 }
+
+.grid {
+  display: flex;
+  gap: 1em;
+  justify-content: center;
+  flex-wrap: wrap;
+} /* Add styles here */
+/* calendar-range {
+} */
+
+.svg {
+  height: 16px;
+  width: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+path {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+calendar-month {
+  /* --color-accent: #7048e8; */
+  --color-text-on-accent: #ffffff;
+}

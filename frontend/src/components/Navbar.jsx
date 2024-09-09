@@ -95,6 +95,11 @@ const Navbar = () => {
               <NavButtons title="Logout" onClick={handleLogout} />
             </li>
           )}
+          {localStorage.getItem("token") && (
+            <li>
+              <NavButtons path={pathname} title="Schedule" to="/schedule" />
+            </li>
+          )}
         </ul>
         <div className="md:hidden list-none flex gap-4">
           {localStorage.getItem("token") && userButton}

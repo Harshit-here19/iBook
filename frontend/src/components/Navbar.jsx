@@ -92,12 +92,12 @@ const Navbar = () => {
           )}
           {localStorage.getItem("token") && (
             <li>
-              <NavButtons title="Logout" onClick={handleLogout} />
+              <NavButtons path={pathname} title="Schedule" to="/schedule" />
             </li>
           )}
           {localStorage.getItem("token") && (
             <li>
-              <NavButtons path={pathname} title="Schedule" to="/schedule" />
+              <NavButtons title="Logout" onClick={handleLogout} />
             </li>
           )}
         </ul>
@@ -137,6 +137,11 @@ const Navbar = () => {
           {!localStorage.getItem("token") && (
             <li onClick={() => setMobileMenuOpen(false)}>
               <NavButtons path={pathname} title="Signup" to="/signup" />
+            </li>
+          )}
+          {!localStorage.getItem("token") && (
+            <li onClick={() => setMobileMenuOpen(false)}>
+              <NavButtons path={pathname} title="Schedule" to="/schedule" />
             </li>
           )}
           {localStorage.getItem("token") && (

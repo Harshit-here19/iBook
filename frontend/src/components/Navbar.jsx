@@ -139,7 +139,7 @@ const Navbar = () => {
               <NavButtons path={pathname} title="Signup" to="/signup" />
             </li>
           )}
-          {!localStorage.getItem("token") && (
+          {localStorage.getItem("token") && (
             <li onClick={() => setMobileMenuOpen(false)}>
               <NavButtons path={pathname} title="Schedule" to="/schedule" />
             </li>

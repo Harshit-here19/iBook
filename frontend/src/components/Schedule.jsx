@@ -5,6 +5,7 @@ import { CalendarMulti, CalendarMonth } from "./Cally";
 import "cally";
 import Modal from "./Utility/Modal";
 import Loader from "./Utility/Loader";
+import Button from "./Utility/Button";
 
 const Schedule = () => {
   const context = useContext(scheduleContext);
@@ -56,7 +57,7 @@ const Schedule = () => {
         </Modal>
       )}
       <div
-        className="hover:w-screen w-4 h-16 px-4 transition-all bg-solo-leveling-400 font-bold text-2xl text-white text-center py-4 absolute z-10"
+        className="w-screenh-16 px-4 transition-all bg-[#2c3e50] font-bold text-2xl text-white text-center py-4 mb-4"
         onClick={() => {
           setAddTask(!addTask);
         }}
@@ -65,7 +66,7 @@ const Schedule = () => {
       </div>
       <div className="flex flex-wrap p-4">
         {addTask && (
-          <div className="w-1/3 flex flex-col items-center border-1 py-4 px-8 shadow-2xl mx-auto">
+          <div className="md:w-1/3 w-fit flex flex-col items-center border-1 py-4 px-8 shadow-2xl mx-auto">
             <CalendarMulti value={days} onChange={onChange}>
               <CalendarMonth color={calendarData.color} />
             </CalendarMulti>
@@ -125,7 +126,7 @@ const Schedule = () => {
         )}
 
         {!addTask && (
-          <div className="w-2/3 flex gap-3 relative">
+          <div className="md:w-2/3 w-screen justify-center flex flex-wrap gap-3 relative">
             {schedule &&
               schedule.map((day, index) => (
                 <div

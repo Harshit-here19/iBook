@@ -1,6 +1,8 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { motion } from "framer-motion";
+
 import toastifyContext from "../context/toastify/toastifyContext";
 
 import Modal from "./Utility/Modal";
@@ -86,7 +88,12 @@ const Login = () => {
           <Loader />
         </Modal>
       )}
-      <div className="bg-gray-100 md:h-screen h-fit flex items-center justify-center">
+      <motion.div
+        className="bg-gray-100 md:h-screen h-fit flex items-center justify-center"
+        initial={{ width: 0 }}
+        animate={{ width: "100%" }}
+        exit={{ x: window.innerWidth, transition: { duration: 0.1 } }}
+      >
         {/* <!-- Login Form --> */}
 
         <div className="relative z-10 bg-white p-8 rounded-md shadow-lg w-[90vw] md:w-1/2">
@@ -132,7 +139,7 @@ const Login = () => {
             </div>
           </form>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

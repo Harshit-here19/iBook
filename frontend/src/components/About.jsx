@@ -1,11 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 import img from "../assets/image.png";
 
 const About = () => {
   return (
-    <section className="pt-10 overflow-hidden bg-gray-50 dark:bg-gray-800 md:pt-0 sm:pt-16 2xl:pt-16">
+    <motion.div
+      className="pt-10 overflow-hidden bg-gray-50 dark:bg-gray-800 md:pt-0 sm:pt-16 2xl:pt-16"
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      exit={{ x: window.innerWidth, transition: { duration: 0.1 } }}
+    >
       <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
         <div className="grid items-center grid-cols-1 md:grid-cols-2">
           <div>
@@ -53,7 +59,7 @@ const About = () => {
           </div>
         </div>
       </div>
-    </section>
+    </motion.div>
   );
 };
 

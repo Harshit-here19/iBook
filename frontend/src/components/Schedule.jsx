@@ -5,7 +5,8 @@ import { CalendarMulti, CalendarMonth } from "./Cally";
 import "cally";
 import Modal from "./Utility/Modal";
 import Loader from "./Utility/Loader";
-import Button from "./Utility/Button";
+
+import { motion } from "framer-motion";
 
 const Schedule = () => {
   const context = useContext(scheduleContext);
@@ -64,9 +65,19 @@ const Schedule = () => {
       >
         {addTask ? "SHOW TASK" : "ADD TASK"}{" "}
       </div>
-      <div className="flex flex-wrap p-4">
+      <motion.div
+        className="flex flex-wrap p-4"
+        initial={{ width: 0 }}
+        animate={{ width: "100%" }}
+        exit={{ x: window.innerWidth, transition: { duration: 0.1 } }}
+      >
         {addTask && (
-          <div className="md:w-1/3 w-fit flex flex-col items-center border-1 py-4 px-8 shadow-2xl mx-auto">
+          <motion.div
+            className="md:w-1/3 w-fit flex flex-col items-center border-1 py-4 px-8 shadow-2xl mx-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
             <CalendarMulti value={days} onChange={onChange}>
               <CalendarMonth color={calendarData.color} />
             </CalendarMulti>
@@ -122,11 +133,16 @@ const Schedule = () => {
                 onChange={onChangeHandler}
               />
             </div>
-          </div>
+          </motion.div>
         )}
 
         {!addTask && (
-          <div className="md:w-2/3 w-screen justify-center flex flex-wrap gap-3 relative">
+          <motion.div
+            className="md:w-2/3 w-screen justify-center flex flex-wrap gap-3 relative"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
             {schedule &&
               schedule.map((day, index) => (
                 <div
@@ -149,9 +165,9 @@ const Schedule = () => {
                   </div>
                 </div>
               ))}
-          </div>
+          </motion.div>
         )}
-      </div>
+      </motion.div>
     </>
   );
 };

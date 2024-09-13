@@ -5,6 +5,8 @@ import toastifyContext from "../context/toastify/toastifyContext";
 import Modal from "./Utility/Modal";
 import Loader from "./Utility/Loader";
 
+import { motion } from "framer-motion";
+
 const Signup = () => {
   const alert = useContext(toastifyContext);
   const { notify } = alert;
@@ -106,7 +108,12 @@ const Signup = () => {
         </Modal>
       )}
 
-      <div className="bg-gray-100  md:h-screen h-fit flex items-center justify-center">
+      <motion.iv
+        className="bg-gray-100  md:h-screen h-fit flex items-center justify-center"
+        initial={{ width: 0 }}
+        animate={{ width: "100%" }}
+        exit={{ x: window.innerWidth, transition: { duration: 0.1 } }}
+      >
         {/* <!-- Signup Form --> */}
         <div className="relative z-10 bg-white p-8 rounded-md shadow-lg">
           <h1 className="text-xl font-bold mb-4">Signup</h1>
@@ -199,7 +206,7 @@ const Signup = () => {
             </div>
           </form>
         </div>
-      </div>
+      </motion.iv>
     </>
   );
 };
